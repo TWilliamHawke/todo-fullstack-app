@@ -1,0 +1,27 @@
+{
+  "name": "todo-server-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "client": "npm start --prefix client",
+    "server": "nodemon server.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^5.1.0",
+    "eslint": "^6.8.0",
+    "nodemon": "^2.0.2"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.4"
+  }
+}

@@ -1,0 +1,20 @@
+h3 {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.link-btn {
+  border: none;
+  padding: 0;
+  color: blue;
+  background: transparent;
+}
+
+.link-wrapper {
+  text-align: right;
+  margin-top: -12px;
+}
+
+.link-btn:focus {
+  outline: none;
+}
