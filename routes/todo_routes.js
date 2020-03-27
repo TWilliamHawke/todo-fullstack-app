@@ -30,7 +30,7 @@ router.post('/', isAuth, async (req, res) => {
   
     await user.addTodo(title)
     const  todoList = todoFilter(user.todoList, req.query)
-    return res.json(todoList)
+    return res.json({todoList, todoLength: user.todoList.length})
   
   } catch(e) {
     console.log(e)
@@ -42,7 +42,7 @@ router.get('/', isAuth, async (req,res) => {
   try{
     const user = await User.findById(req.user.id)
     const  todoList = todoFilter(user.todoList, req.query)
-    return res.json(todoList)
+    return res.json({todoList, todoLength: user.todoList.length})
 
   } catch(e) {
     console.log(e)
@@ -58,7 +58,7 @@ router.delete('/', isAuth, async (req, res) => {
     await user.deleteTodo(id)
 
     const  todoList = todoFilter(user.todoList, req.query)
-    return res.json(todoList)
+    return res.json({todoList, todoLength: user.todoList.length})
 
   } catch(e) {
     console.log(e)
@@ -73,7 +73,7 @@ router.patch('/', isAuth, async (req, res) => {
     await user.changeStatus(id, status)
 
     const  todoList = todoFilter(user.todoList, req.query)
-    return res.json(todoList)
+    return res.json({todoList, todoLength: user.todoList.length})
 
   } catch(e) {
     console.log(e)

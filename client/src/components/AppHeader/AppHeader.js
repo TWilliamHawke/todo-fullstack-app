@@ -1,13 +1,20 @@
 import React from 'react';
 import './app-header.css'
+import { logout } from '../../redux/actions'
+import { connect } from 'react-redux';
 
-const AppHeader = ({toDo = 2, done = 1}) => {
+const AppHeader = ({logout}) => {
+
   return (
     <div className="app-header d-flex">
       <h1>Todo List</h1>
-      <h2>{toDo} more to do, {done} done</h2>
+      <button onClick={logout} className='btn btn-outline-danger'>&times;</button>
     </div>
   );
 };
 
-export default AppHeader;
+const mapDispatchToProps = {
+  logout
+}
+
+export default connect(null, mapDispatchToProps)(AppHeader);

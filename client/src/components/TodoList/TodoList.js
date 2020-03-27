@@ -6,7 +6,7 @@ import { fetchTodo } from '../../redux/actions'
 
 const TodoList = ({todoList, fetchTodo}) => {
   useEffect(() => {
-    fetchTodo('get',null, 'limit=-10')
+    fetchTodo('get')
   }, [])
 
   return (

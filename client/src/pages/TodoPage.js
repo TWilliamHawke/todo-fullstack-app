@@ -6,8 +6,10 @@ import TodoList from '../components/TodoList/TodoList';
 import ItemStatusFilter from '../components/ItemStatusFilter/ItemStatusFilter';
 import AddPanel from '../components/AddPanel/AddPanel';
 import LoadMoreButton from '../components/LoadMoreButton/LoadMoreButton';
+import { connect } from 'react-redux';
+import ErrorList from '../components/ErrorList/ErrorList';
 
-const TodoPage = () => {
+const TodoPage = ({errors}) => {
   return (
     <>
       <AppHeader todo={2} done={2}/>
@@ -15,11 +17,16 @@ const TodoPage = () => {
         <SearchPanel />
         <ItemStatusFilter />
       </div>
-      <TodoList />
+      {!errors.length && <TodoList />}
+      <ErrorList data={errors} />
       <AddPanel />
       <LoadMoreButton />
     </>
   );
 };
 
-export default TodoPage;
+const mapStateToProps = state => ({
+  errors: state.user.errors
+})
+
+export default connect(mapStateToProps)(TodoPage);
