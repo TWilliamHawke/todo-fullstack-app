@@ -13,7 +13,7 @@ const initialState = {
 }
 
 const handlers = {
-  [FETCH_TODOS_REQUEST]: (state) => ({...state, loading: true}),
+  [FETCH_TODOS_REQUEST]: (state) => ({...state, loading: true, errors: []}),
   [FETCH_TODOS_SUCCESS]: (state, {todoList, todoLength}) => ({...state, loading:false, todoList, todoLength}),
   [FETCH_TODOS_FAILURE]: (state, payload) => ({...state, loading: false, errors: payload}),
   default: state => state,

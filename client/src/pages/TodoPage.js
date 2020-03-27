@@ -17,7 +17,7 @@ const TodoPage = ({errors}) => {
         <SearchPanel />
         <ItemStatusFilter />
       </div>
-      {!errors.length && <TodoList />}
+      <TodoList />
       <ErrorList data={errors} />
       <AddPanel />
       <LoadMoreButton />
@@ -26,7 +26,7 @@ const TodoPage = ({errors}) => {
 };
 
 const mapStateToProps = state => ({
-  errors: state.user.errors
+  errors: state.todo.errors
 })
 
 export default connect(mapStateToProps)(TodoPage);
