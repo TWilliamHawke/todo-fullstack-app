@@ -1,5 +1,5 @@
 {
-  "mongoUrl": "mongodb+srv://TWilliam:pectubuedb5@cluster0-wzlna.azure.mongodb.net/app?retryWrites=true&w=majority",
+  "mongoUrl": "mongodb+srv://twilliam:anotherdatabase@cluster0-akcdk.azure.mongodb.net/test?retryWrites=true&w=majority",
   "secret": "i love banana",
   "secretRef": "i dislike banana"
 }

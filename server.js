@@ -2,11 +2,13 @@ const express = require('express')
 const mongoose = require('mongoose')
 const authRoutes = require('./routes/auth_routes')
 const todoRouter = require('./routes/todo_routes')
+const config = require('config')
 
 const app = express()
 
+const isLocalDb = true
 
-const mongoUrl = 'mongodb+srv://twilliam:anotherdatabase@cluster0-akcdk.azure.mongodb.net/test?retryWrites=true&w=majority'
+const mongoUrl = isLocalDb ? 'mongodb://localhost:27017/todo-server-app' : config.get('mongoUrl')
 
 app.use(express.json({ extended: true }))
 
