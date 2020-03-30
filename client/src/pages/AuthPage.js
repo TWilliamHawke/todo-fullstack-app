@@ -59,7 +59,7 @@ const AuthPage = ({createUser, loading, errors, hideMessages, successMessage, lo
           {pageName !== 'Login' && <button onClick={() => changePage('Login')} className="link-btn">Have account?</button>}
         </div>
         <ErrorList data={errors} />
-        {successMessage && <div className="alert alert-success">Account has created!</div>}
+        {successMessage && <div className="alert alert-success">Account has been created!</div>}
         <div className='text-center'>
           <button type="submit" disabled={!formValidator()} className="btn btn-outline-secondary">{pageName}</button>
         </div>

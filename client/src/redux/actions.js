@@ -34,7 +34,7 @@ export const loginUser = (user) => async dispatch => {
     dispatch(setAuth())
 
   } catch(e) {
-    dispatch(authFailure(e.response.data))
+    dispatch(authFailure(e.response.data, AUTH_FAILURE))
   }
 }
 
