@@ -1,4 +1,5 @@
 import Axios from "axios"
+import * as tokenjs from './token'
 
 export const refreshToken = async (refToken) => {
   const { data } = await Axios.post('/api/user/refresh', {refToken})
@@ -13,7 +14,8 @@ export const getToken = async() => {
   if(!tokens) throw new Error('you hasnt tokens')
   const {token, refToken, tokenDie} = JSON.parse(tokens)
 
+  //tokenDie = date.now + 1h on server
   if(tokenDie > Date.now()) return `Bearer ${token}`
-  const newToken = await refreshToken(refToken)
+  const newToken = await tokenjs.refreshToken(refToken)
   return `Bearer ${newToken}`
 }
