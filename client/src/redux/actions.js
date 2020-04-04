@@ -1,33 +1,32 @@
 import { CREATE_USER_SUCCESS, AUTH_REQUEST, AUTH_FAILURE, HIDE_AUTH_MESSAGES, LOGIN_SUCCESS, FETCH_TODOS_FAILURE, FETCH_TODOS_REQUEST, FETCH_TODOS_SUCCESS, SET_FILTER_DONE, SET_FILTER_TITLE, SET_FILTER_LIMIT, LOGOUT } from "./types"
 import axios from 'axios'
 import { getToken } from '../utils/token'
+import {transformErrors} from './actionHelpers'
 
-const authFailure = (data, type) => {
-  let payload = ['Server is not aviable']
 
-  if(data.errors) {
-    payload = data.errors.map(error => error.msg)
-  } else if (data.message) {
-    payload = [data.message]
-  }
-  return {type, payload}
+export const setAuth = () => ({type: LOGIN_SUCCESS})
+export const authRequest = () => ({type: AUTH_REQUEST})
+export const hideMessages = () => ({type: HIDE_AUTH_MESSAGES})
+export const createUserSuccess = () => ({type: CREATE_USER_SUCCESS})
+
+export const authFailure = (errors) => {
+  const payload = transformErrors(errors)
+  return {type: AUTH_FAILURE, payload}
 }
 
 export const createUser = (data) => async dispatch => {
-  dispatch({type: AUTH_REQUEST})
+  dispatch(authRequest())
   try {
     await axios.post('/api/user/signup', data)
-    dispatch({type: CREATE_USER_SUCCESS})
+    dispatch(createUserSuccess())
 
   } catch(e) {
     dispatch(authFailure(e.response.data, AUTH_FAILURE))
   }
 }
 
-export const setAuth = () => ({type: LOGIN_SUCCESS})
-
 export const loginUser = (user) => async dispatch => {
-  dispatch({type: AUTH_REQUEST})
+  dispatch(authRequest())
   try {
     const {data} = await axios.post('/api/user/login', user)
     localStorage.setItem('tokens', JSON.stringify(data))
@@ -38,12 +37,13 @@ export const loginUser = (user) => async dispatch => {
   }
 }
 
-export const hideMessages = () => ({type: HIDE_AUTH_MESSAGES})
-
 export const logout = () => {
   localStorage.removeItem('tokens')
   return {type: LOGOUT}
 }
+
+export const fetchTodosSuccess = (payload) => ({type: FETCH_TODOS_SUCCESS, payload})
+export const fetchTodosFailure = (payload) => ({type: FETCH_TODOS_FAILURE, payload})
 
 export const fetchTodo = (method, data) => async (dispatch, getState) => {
   dispatch({type: FETCH_TODOS_REQUEST})
@@ -56,7 +56,7 @@ export const fetchTodo = (method, data) => async (dispatch, getState) => {
     const response = await axios(url, { method, data, headers: {Authorization: token}})
     const todoList = response.data
 
-    dispatch({type: FETCH_TODOS_SUCCESS, payload:todoList})
+    dispatch(fetchTodosSuccess(todoList))
 
   } catch(e) {
     if(!e.response) return console.log(e)
@@ -69,18 +69,5 @@ export const fetchTodo = (method, data) => async (dispatch, getState) => {
 
 }
 
-export const setFilterDone = payload => dispatch =>  {
-  dispatch({type: SET_FILTER_DONE, payload})
-  dispatch(fetchTodo('get'))
-}
 
-export const setFilterTitle = payload => dispatch =>  {
-  dispatch({type: SET_FILTER_TITLE, payload})
-  dispatch(fetchTodo('get'))
-}
-
-export const setFilterLimit = () => dispatch =>  {
-  dispatch({type: SET_FILTER_LIMIT})
-  dispatch(fetchTodo('get'))
-}
 

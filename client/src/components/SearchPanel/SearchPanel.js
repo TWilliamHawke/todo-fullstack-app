@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './search-panel.css'
 import { connect } from 'react-redux';
-import { setFilterTitle } from '../../redux/actions'
+import { setFilterTitle } from '../../redux/filtersActions'
 
 const SearchPanel = ({ setFilterTitle }) => {
   const [value, setValue] = useState('')

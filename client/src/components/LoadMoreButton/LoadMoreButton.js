@@ -1,5 +1,5 @@
 import React from 'react';
-import { fetchTodo, setFilterLimit } from '../../redux/actions'
+import { setFilterLimit } from '../../redux/filtersActions'
 import { connect } from 'react-redux';
 import Spinner from '../Spinner/Spinner';
 import './load-more-buttons.css'

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { setFilterDone } from '../../redux/actions'
+import { setFilterDone } from '../../redux/filtersActions'
 
 const ItemStatusFilter = ({show, loading, setFilterDone}) => {
   const classActive = 'btn btn-info';
