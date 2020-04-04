@@ -128,14 +128,6 @@ module.exports = (env = {}) => {
       ],
     },
 
-    resolve: {
-      extensions: ['', 'js', 'jsx'],
-      modules: [
-        'node_modules',
-      ],
-    },
-
-
     devServer: {
       port: 3000,
       open: true,
