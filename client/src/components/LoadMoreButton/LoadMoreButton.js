@@ -11,12 +11,12 @@ const LoadMoreButton = ({ setFilterLimit, loading, limit, todoLength }) => {
   return (
     <>
       <p className='todo-count'>Loaded {showingCount} of {todoLength}</p>
-    <button
-      disabled={todoLength + limit < 0}
-      onClick={setFilterLimit}
-     className={className}>
-      {loading ? <Spinner /> : 'LoadMore'}
-    </button>
+      <button
+        disabled={todoLength + limit < 0}
+        onClick={setFilterLimit}
+        className={className}>
+        {loading ? <Spinner /> : 'LoadMore'}
+      </button>
     </>
   );
 };
