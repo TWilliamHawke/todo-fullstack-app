@@ -1,12 +1,15 @@
-import { CREATE_USER_SUCCESS, AUTH_REQUEST, AUTH_FAILURE, HIDE_AUTH_MESSAGES, LOGIN_SUCCESS, FETCH_TODOS_FAILURE, FETCH_TODOS_REQUEST, FETCH_TODOS_SUCCESS, SET_FILTER_DONE, SET_FILTER_TITLE, SET_FILTER_LIMIT, LOGOUT } from "./types"
+import { CREATE_USER_SUCCESS, AUTH_REQUEST, AUTH_FAILURE, HIDE_AUTH_MESSAGES, LOGIN_SUCCESS, FETCH_TODOS_FAILURE, FETCH_TODOS_REQUEST, FETCH_TODOS_SUCCESS, LOGOUT } from "./types"
 import axios from 'axios'
 import { getToken } from '../utils/token'
 import {transformErrors} from './actionHelpers'
 
 
 export const setAuth = () => ({type: LOGIN_SUCCESS})
+
 export const authRequest = () => ({type: AUTH_REQUEST})
+
 export const hideMessages = () => ({type: HIDE_AUTH_MESSAGES})
+
 export const createUserSuccess = () => ({type: CREATE_USER_SUCCESS})
 
 export const authFailure = (errors) => {
@@ -21,7 +24,7 @@ export const createUser = (data) => async dispatch => {
     dispatch(createUserSuccess())
 
   } catch(e) {
-    dispatch(authFailure(e.response.data, AUTH_FAILURE))
+    dispatch(authFailure(e.response.data))
   }
 }
 
@@ -33,7 +36,7 @@ export const loginUser = (user) => async dispatch => {
     dispatch(setAuth())
 
   } catch(e) {
-    dispatch(authFailure(e.response.data, AUTH_FAILURE))
+    dispatch(authFailure(e.response.data))
   }
 }
 
@@ -43,7 +46,11 @@ export const logout = () => {
 }
 
 export const fetchTodosSuccess = (payload) => ({type: FETCH_TODOS_SUCCESS, payload})
-export const fetchTodosFailure = (payload) => ({type: FETCH_TODOS_FAILURE, payload})
+
+export const fetchTodosFailure = (errors) => {
+  const payload = transformErrors(errors)
+  return {type: FETCH_TODOS_FAILURE, payload}
+}
 
 export const fetchTodo = (method, data) => async (dispatch, getState) => {
   dispatch({type: FETCH_TODOS_REQUEST})
@@ -62,9 +69,9 @@ export const fetchTodo = (method, data) => async (dispatch, getState) => {
     if(!e.response) return console.log(e)
     if(e.response.data.logout) {
       dispatch(logout())
-      dispatch(authFailure(e.response.data, AUTH_FAILURE))
+      return dispatch(authFailure(e.response.data))
     }
-    dispatch(authFailure(e.response.data, FETCH_TODOS_FAILURE))
+    dispatch(fetchTodosFailure(e.response.data))
   }
 
 }
