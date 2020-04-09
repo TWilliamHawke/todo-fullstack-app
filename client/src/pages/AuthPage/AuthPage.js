@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { hideMessages } from '../../redux/actions'
+import { hideMessages } from 'Src/redux/actions'
 import './auth-page.css'
 import { connect } from 'react-redux';
-import LoginPage from '../LoginPage/LoginPage';
-import SignUpPage from '../SignUpPage/SignUpPage';
+import LoginPage from './components/LoginPage';
+import SignUpPage from './components/SignUpPage';
 
 const AuthPage = ({ hideMessages, successMessage }) => {
   const [isLoginPage, setIsLoginPage] = useState(true)

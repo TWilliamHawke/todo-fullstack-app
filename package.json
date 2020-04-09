@@ -6,7 +6,9 @@
   "scripts": {
     "client": "npm start --prefix client",
     "server": "nodemon index.js",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test-client": "npm test --prefix client",
+    "test-server": "jest"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +16,7 @@
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
+    "@babel/preset-react": "^7.9.4",
     "@types/jest": "^25.1.4",
     "babel-jest": "^25.2.4",
     "concurrently": "^5.1.0",

@@ -102,6 +102,12 @@ module.exports = (env = {}) => {
 
     },
 
+    resolve: {
+      alias: {
+        Src: path.resolve(__dirname, 'src/')
+      }
+    },
+
     module: {
       rules: [
         {//styles

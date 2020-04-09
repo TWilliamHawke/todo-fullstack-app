@@ -2,7 +2,7 @@ import { setFilterDone, setFilterLimit, setFilterTitle } from "./filtersActions"
 import { fetchTodo } from "./actions"
 import thunk from "redux-thunk"
 import configureMockStore from 'redux-mock-store'
-import { SET_FILTER_DONE, FETCH_TODOS_REQUEST, SET_FILTER_LIMIT, SET_FILTER_TITLE } from "./types"
+import { SET_FILTER_DONE, SET_FILTER_LIMIT, SET_FILTER_TITLE } from "./types"
 
 jest.mock('./actions.js')
 

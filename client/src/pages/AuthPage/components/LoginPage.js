@@ -1,6 +1,6 @@
 import React from 'react';
-import AuthForm from '../AuthPage/components/AuthForm';
-import { loginUser } from '../../redux/actions'
+import AuthForm from './AuthForm';
+import { loginUser } from 'Src/redux/actions'
 import { connect } from 'react-redux';
 
 const LoginPage = ({changePage, loginUser}) => {
