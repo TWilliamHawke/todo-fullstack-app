@@ -3,7 +3,7 @@ import './search-panel.css'
 import { connect } from 'react-redux';
 import { setFilterTitle } from '../../redux/filtersActions'
 
-const SearchPanel = ({ setFilterTitle }) => {
+export const SearchPanel = ({ setFilterTitle }) => {
   const [value, setValue] = useState('')
 
   const onSearch = e => {
