@@ -3,7 +3,7 @@ import './app-header.css'
 import { logout } from '../../redux/actions'
 import { connect } from 'react-redux';
 
-const AppHeader = ({logout}) => {
+export const AppHeader = ({logout}) => {
 
   return (
     <div className="app-header d-flex">

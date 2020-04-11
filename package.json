@@ -8,7 +8,8 @@
     "server": "nodemon index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test-client": "npm test --prefix client",
-    "test-server": "jest"
+    "test-server": "jest",
+    "cli-co": "npm run test-coverage --prefix client"
   },
   "keywords": [],
   "author": "",

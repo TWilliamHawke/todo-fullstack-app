@@ -1,18 +1,19 @@
 import React from 'react';
-import './TodoPage.css'
+import { connect } from 'react-redux';
 import AppHeader from '../components/AppHeader/AppHeader';
 import SearchPanel from '../components/SearchPanel/SearchPanel';
 import TodoList from '../components/TodoList/TodoList';
 import ItemStatusFilter from '../components/ItemStatusFilter/ItemStatusFilter';
 import AddPanel from '../components/AddPanel/AddPanel';
 import LoadMoreButton from '../components/LoadMoreButton/LoadMoreButton';
-import { connect } from 'react-redux';
 import ErrorList from '../components/ErrorList/ErrorList';
 
-const TodoPage = ({errors}) => {
+import './TodoPage.css'
+
+export const TodoPage = ({errors}) => {
   return (
     <>
-      <AppHeader todo={2} done={2}/>
+      <AppHeader />
       <div className="top-panel d-flex">
         <SearchPanel />
         <ItemStatusFilter />
