@@ -1,15 +1,10 @@
 import { FETCH_TODOS_REQUEST, FETCH_TODOS_SUCCESS, FETCH_TODOS_FAILURE } from "./types"
 
-const initialState = {
+export const initialState = {
   loading:true,
   todoList: [],
   errors: [],
   todoLength: 0,
-  filters: {
-    limit: -10,
-    title: '',
-    show: 'all',
-  }
 }
 
 const handlers = {

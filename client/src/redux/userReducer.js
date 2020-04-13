@@ -1,6 +1,6 @@
 import { CREATE_USER_SUCCESS, AUTH_REQUEST, AUTH_FAILURE, HIDE_AUTH_MESSAGES, LOGIN_SUCCESS, LOGOUT } from "./types"
 
-const initial_state = {
+export const initial_state = {
   errors: [],
   loading: false,
   successMessage: false,
@@ -10,7 +10,7 @@ const initial_state = {
 
 const handlers = {
   default: state => state,
-  [AUTH_REQUEST]: state => ({...state, loading: true, errors: []}),
+  [AUTH_REQUEST]: state => ({...state, loading: true, errors: [], successMessage: false}),
   [AUTH_FAILURE]: (state, payload) => ({
     ...state, loading: false, errors: payload
   }),
