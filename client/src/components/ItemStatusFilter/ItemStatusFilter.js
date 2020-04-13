@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { setFilterDone } from '../../redux/filtersActions'
 
-const ItemStatusFilter = ({show, loading, setFilterDone}) => {
+export const ItemStatusFilter = ({show, loading, setFilterDone}) => {
   const classActive = 'btn btn-info';
   const classNonActive = 'btn btn-outline-secondary';
   const buttonList = [
@@ -18,7 +18,7 @@ const ItemStatusFilter = ({show, loading, setFilterDone}) => {
   const buttons = buttonList.map((elem, index) => {
     return(
       <button
-      disabled={loading}
+        disabled={loading}
         type="button"
         key={index}
         name={elem.name}

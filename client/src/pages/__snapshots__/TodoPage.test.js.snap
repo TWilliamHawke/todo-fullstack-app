@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`dummy component should rendered correctly 1`] = `
+<Fragment>
+  <Connect(AppHeader) />
+  <div
+    className="top-panel d-flex"
+  >
+    <Connect(SearchPanel) />
+    <Connect(ItemStatusFilter) />
+  </div>
+  <Connect(TodoList) />
+  <ErrorList
+    data="error array"
+  />
+  <Connect(AddPanel) />
+  <Connect(LoadMoreButton) />
+</Fragment>
+`;

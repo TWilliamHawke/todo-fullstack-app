@@ -2,17 +2,18 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import ErrorList from '../../../components/ErrorList/ErrorList';
 
-const AuthForm = ({fetchForm, children, loading, pageName, errors, successMessage}) => {
+export const AuthForm = ({fetchForm, children, loading, pageName, errors, successMessage}) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('123456')
 
   const formHandler = e => {
     e.preventDefault()
+    if (formValidator()) return
     fetchForm({email, password})
   }
 
   const formValidator = () => {
-    return !loading && password.length > 5 && email.length > 5
+    return loading || password.length < 5 || email.length < 5
   }
 
   return(
@@ -40,7 +41,7 @@ const AuthForm = ({fetchForm, children, loading, pageName, errors, successMessag
       <ErrorList data={errors} />
       {successMessage && <div className="alert alert-success">Account has been created!</div>}
       <div className='text-center'>
-        <button type="submit" disabled={!formValidator()} className="btn btn-outline-secondary">{pageName}</button>
+        <button type="submit" disabled={formValidator()} className="btn btn-outline-secondary">{pageName}</button>
       </div>
     </form>
   )

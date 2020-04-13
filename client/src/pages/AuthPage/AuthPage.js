@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import LoginPage from './components/LoginPage';
 import SignUpPage from './components/SignUpPage';
 
-const AuthPage = ({ hideMessages, successMessage }) => {
+export const AuthPage = ({ hideMessages, successMessage }) => {
   const [isLoginPage, setIsLoginPage] = useState(true)
 
   useEffect(() => {

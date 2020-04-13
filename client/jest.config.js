@@ -1,5 +1,4 @@
 module.exports = {
-  "testEnvironment": "node",
   "transform": {
     '^.+\\.js$': "babel-jest"
   },
@@ -15,4 +14,5 @@ module.exports = {
     "^Src(.*)$": "<rootDir>/src$1"
   },
   "setupFilesAfterEnv": ["<rootDir>/src/test.config.js"],
+  "snapshotSerializers": ["enzyme-to-json/serializer"],
 };
