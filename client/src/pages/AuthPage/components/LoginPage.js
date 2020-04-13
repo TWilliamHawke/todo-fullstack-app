@@ -3,7 +3,7 @@ import AuthForm from './AuthForm';
 import { loginUser } from 'Src/redux/actions'
 import { connect } from 'react-redux';
 
-const LoginPage = ({changePage, loginUser}) => {
+ export const LoginPage = ({changePage, loginUser}) => {
 
   return(
     <>

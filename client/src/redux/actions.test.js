@@ -3,12 +3,12 @@ import thunk from 'redux-thunk'
 import axios from 'axios'
 import { createUser, authFailure, setAuth, authRequest, hideMessages, createUserSuccess, loginUser, logout, fetchTodosSuccess, fetchTodosFailure, fetchTodo } from './actions'
 import { CREATE_USER_SUCCESS, AUTH_REQUEST, AUTH_FAILURE, LOGIN_SUCCESS, HIDE_AUTH_MESSAGES, LOGOUT, FETCH_TODOS_SUCCESS, FETCH_TODOS_FAILURE, FETCH_TODOS_REQUEST } from './types'
-import { transformErrors } from './actionHelpers'
+import { transformErrors } from '../utils/actionHelpers'
 //import { getToken } from '../utils/token'
 
 jest.mock('axios')
 jest.mock('../utils/token.js', () => ({getToken: jest.fn(() => 'testToken')}))
-jest.mock('./actionHelpers.js', () => ({transformErrors: jest.fn(() => 'transformed Array')}))
+jest.mock('../utils/actionHelpers', () => ({transformErrors: jest.fn(() => 'transformed Array')}))
 
 const mockStore = configureMockStore([thunk])
 let store

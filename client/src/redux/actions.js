@@ -1,7 +1,7 @@
 import { CREATE_USER_SUCCESS, AUTH_REQUEST, AUTH_FAILURE, HIDE_AUTH_MESSAGES, LOGIN_SUCCESS, FETCH_TODOS_FAILURE, FETCH_TODOS_REQUEST, FETCH_TODOS_SUCCESS, LOGOUT } from "./types"
 import axios from 'axios'
 import { getToken } from '../utils/token'
-import {transformErrors} from './actionHelpers'
+import {transformErrors} from '../utils/actionHelpers'
 
 
 export const setAuth = () => ({type: LOGIN_SUCCESS})
@@ -66,7 +66,7 @@ export const fetchTodo = (method, data) => async (dispatch, getState) => {
     dispatch(fetchTodosSuccess(todoList))
 
   } catch(e) {
-    if(!e.response) return console.log(e)
+    //if(!e.response) return console.log(e)
     if(e.response.data.logout) {
       dispatch(logout())
       return dispatch(authFailure(e.response.data))

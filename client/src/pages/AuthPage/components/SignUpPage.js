@@ -3,7 +3,7 @@ import AuthForm from './AuthForm';
 import { createUser } from 'Src/redux/actions'
 import { connect } from 'react-redux';
 
-const SignUpPage = ({changePage, createUser}) => {
+export const SignUpPage = ({changePage, createUser}) => {
 
   return(
     <>

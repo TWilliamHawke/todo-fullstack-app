@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import ErrorList from '../../../components/ErrorList/ErrorList';
+import { authValidator } from '../../../utils/formValidator';
 
 export const AuthForm = ({fetchForm, children, loading, pageName, errors, successMessage}) => {
   const [email, setEmail] = useState('')
@@ -13,7 +14,7 @@ export const AuthForm = ({fetchForm, children, loading, pageName, errors, succes
   }
 
   const formValidator = () => {
-    return loading || password.length < 5 || email.length < 5
+    return authValidator(loading, password, email)
   }
 
   return(
