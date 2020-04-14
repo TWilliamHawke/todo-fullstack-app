@@ -4,18 +4,18 @@ import { connect } from 'react-redux';
 import Spinner from '../Spinner/Spinner';
 import './load-more-buttons.css'
 
-const LoadMoreButton = ({ setFilterLimit, loading, limit, todoLength }) => {
+export const LoadMoreButton = ({ setFilterLimit, loading, limit, todoLength }) => {
   let className = 'btn btn-outline-secondary btn-lg btn-block'
   if(!loading) className += ' load-more'
-  const showingCount = todoLength + limit < 0 ? todoLength : limit * -1
+
   return (
     <>
-      <p className='todo-count'>Loaded {showingCount} of {todoLength}</p>
+      <p className='todo-count'>Loaded {limit} of {todoLength}</p>
       <button
-        disabled={todoLength + limit < 0}
+        disabled={loading || todoLength === limit}
         onClick={setFilterLimit}
         className={className}>
-        {loading ? <Spinner /> : 'LoadMore'}
+        {loading ? <Spinner /> : 'Load More'}
       </button>
     </>
   );
@@ -26,7 +26,7 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = state => ({
-  limit: state.filter.limit,
+  limit: state.todo.todoList.length,
   loading: state.todo.loading,
   todoLength: state.todo.todoLength
 })

@@ -4,10 +4,10 @@ const User = require('../models/User')
 
 const router = Router()
 
-const todoFilter = (todoList, filter) => {
+const todoFilter = (dbTodoList, filter) => {
   const { limit, title, show } = filter
   
-  const filterTodo = todoList
+  const filteredTodo = dbTodoList
     .filter(todo => todo.title.includes(title))
     .filter(todo => {
       switch (show) {
@@ -18,8 +18,9 @@ const todoFilter = (todoList, filter) => {
         default: return true
       }
     })
-    .splice(limit || -10)
-  return filterTodo
+  const todoLength = filteredTodo.length
+  const todoList = filteredTodo.splice(limit || -10)
+  return {todoList, todoLength}
 
 }
 
@@ -29,8 +30,8 @@ router.post('/', isAuth, async (req, res) => {
     const { title } = req.body
   
     await user.addTodo(title)
-    const  todoList = todoFilter(user.todoList, req.query)
-    return res.json({todoList, todoLength: user.todoList.length})
+    const todoData = todoFilter(user.todoList, req.query)
+    return res.json(todoData)
   
   } catch(e) {
     console.log(e)
@@ -41,8 +42,8 @@ router.post('/', isAuth, async (req, res) => {
 router.get('/', isAuth, async (req,res) => {
   try{
     const user = await User.findById(req.user.id)
-    const  todoList = todoFilter(user.todoList, req.query)
-    return res.json({todoList, todoLength: user.todoList.length})
+    const todoData = todoFilter(user.todoList, req.query)
+    return res.json(todoData)
 
   } catch(e) {
     console.log(e)
@@ -57,8 +58,8 @@ router.delete('/', isAuth, async (req, res) => {
     const { id } = req.body
     await user.deleteTodo(id)
 
-    const  todoList = todoFilter(user.todoList, req.query)
-    return res.json({todoList, todoLength: user.todoList.length})
+    const todoData = todoFilter(user.todoList, req.query)
+    return res.json(todoData)
 
   } catch(e) {
     console.log(e)
@@ -72,8 +73,8 @@ router.patch('/', isAuth, async (req, res) => {
     const { id, ...status } = req.body
     await user.changeStatus(id, status)
 
-    const  todoList = todoFilter(user.todoList, req.query)
-    return res.json({todoList, todoLength: user.todoList.length})
+    const todoData = todoFilter(user.todoList, req.query)
+    return res.json(todoData)
 
   } catch(e) {
     console.log(e)

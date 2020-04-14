@@ -4,7 +4,7 @@ import TodoItem from '../TodoItem/TodoItem';
 import { connect } from 'react-redux';
 import { fetchTodo } from '../../redux/actions'
 
-const TodoList = ({todoList, fetchTodo}) => {
+export const TodoList = ({todoList, fetchTodo}) => {
   useEffect(() => {
     fetchTodo('get')
   }, [])

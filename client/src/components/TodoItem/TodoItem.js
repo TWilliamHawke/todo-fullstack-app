@@ -6,7 +6,7 @@ import { faTrashAlt } from '@fortawesome/free-regular-svg-icons'
 import { fetchTodo } from '../../redux/actions'
 import { connect } from 'react-redux';
 
-const TodoItem = ({ fetchTodo, done, important, title, id, loading }) => {
+export const TodoItem = ({ fetchTodo, done, important, title, id, loading }) => {
   let clasNames = 'todo-list-item'
   if(done) {
     clasNames += ' done'

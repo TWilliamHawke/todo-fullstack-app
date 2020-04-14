@@ -5,7 +5,7 @@ import AuthPage from './pages/AuthPage/AuthPage';
 import { setAuth } from './redux/actions';
 
 
-const Routes = ({isAuth, setAuth}) => {
+export const Routes = ({isAuth, setAuth}) => {
   const tokens = localStorage.getItem('tokens')
 
   useEffect(() => {
