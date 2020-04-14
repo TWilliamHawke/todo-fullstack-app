@@ -3,6 +3,7 @@ import {shallow} from 'enzyme'
 import ConnectedAuthForm, { AuthForm } from './AuthForm'
 import { authValidator } from 'Src/utils/formValidator'
 import configStore from 'redux-mock-store'
+import { render, fireEvent, cleanup} from '@testing-library/react'
 
 jest.mock('Src/utils/formValidator')
 
@@ -43,6 +44,25 @@ describe('test dummy component', () => {
 
   it('should render success message', () => {
     expect(wrapper.find('.alert.alert-success').text()).toBe('Account has been created!')
+  })
+
+})
+
+describe('testing inputs with react-testing-library', () => {
+  afterEach(cleanup)
+
+  it('should change email input', () => {
+    const {container} = render(<AuthForm errors={[]} />)
+    const input = container.querySelector('[type="email"')
+    fireEvent.change(input, { target:{ value: 'qwerty' }})
+    expect(input.value).toBe('qwerty')
+  })
+
+  it('should change password input', () => {
+    const {container} = render(<AuthForm errors={[]} />)
+    const input = container.querySelector('[type="password"')
+    fireEvent.change(input, { target:{ value: ' qwerty ' }})
+    expect(input.value).toBe('qwerty')
   })
 })
 

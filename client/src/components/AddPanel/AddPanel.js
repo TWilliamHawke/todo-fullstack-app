@@ -3,14 +3,15 @@ import { fetchTodo } from '../../redux/actions'
 import './add-panel.css'
 import { connect } from 'react-redux';
 
-const AddPanel = ({ fetchTodo, loading }) => {
+export const AddPanel = ({ fetchTodo, loading }) => {
   const [title, setTitle] = useState('')
 
   const onSubmit = e => {
-    if(loading) return
     e.preventDefault()
+    if(loading) return
     fetchTodo('post', {title})
   }
+
   const onChangeTitle = e => {
     setTitle(e.target.value)
   }
