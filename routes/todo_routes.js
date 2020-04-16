@@ -1,28 +1,10 @@
 const {Router} = require('express')
 const isAuth = require('../middleware/auth_middleware')
 const User = require('../models/User')
+const todoFilter = require("../utils/todoFilter");
 
 const router = Router()
 
-const todoFilter = (dbTodoList, filter) => {
-  const { limit, title, show } = filter
-  
-  const filteredTodo = dbTodoList
-    .filter(todo => todo.title.includes(title))
-    .filter(todo => {
-      switch (show) {
-        case 'active':
-          return !todo.done
-        case 'done':
-          return todo.done
-        default: return true
-      }
-    })
-  const todoLength = filteredTodo.length
-  const todoList = filteredTodo.splice(limit || -10)
-  return {todoList, todoLength}
-
-}
 
 router.post('/', isAuth, async (req, res) => {
   try {

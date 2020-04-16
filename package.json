@@ -7,23 +7,15 @@
     "client": "npm start --prefix client",
     "server": "nodemon index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "test-client": "npm test --prefix client",
-    "test-server": "jest",
+    "test": "npm test --prefix client",
     "cli-co": "npm run test-coverage --prefix client"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.0",
-    "@babel/preset-react": "^7.9.4",
-    "@types/jest": "^25.1.4",
-    "babel-jest": "^25.2.4",
     "concurrently": "^5.1.0",
-    "enzyme-to-json": "^3.4.4",
     "eslint": "^6.8.0",
-    "jest": "^25.2.4",
     "nodemon": "^2.0.2"
   },
   "dependencies": {
